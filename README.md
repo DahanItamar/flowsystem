@@ -38,17 +38,20 @@ So write the spec first. The catch is that a spec is only useful while it's **tr
 **Terminal CLI**
 
 ```
-/plugin marketplace add DahanItamar/flowsystem
-/plugin install flowsystem@flowsystem
+/plugin marketplace add DahanItamar/ai-skills
+/plugin install flowsystem@dahanitamar
 /reload-plugins
 ```
 
-One install, both skills.
+One install, both skills. That catalogue also carries
+[`uilint`](https://github.com/DahanItamar/uilint) and
+[`readme-architect`](https://github.com/DahanItamar/readme-architect) — one add, then install
+whichever you want.
 
 **VS Code extension** — the two lines above do nothing here. `/plugin` is an interactive panel the terminal CLI has and the extension doesn't; paste it and Claude answers *"`/plugin` isn't available in this environment"* without adding anything. The extension spells it **`/plugins`**, plural, and opens a dialog:
 
 1. Type `/plugins` in the prompt box
-2. **Marketplaces** tab → add `DahanItamar/flowsystem`
+2. **Marketplaces** tab → add `DahanItamar/ai-skills`
 3. **Plugins** tab → find **flowsystem** → **Install**, and choose a scope
 4. Restart Claude Code when the banner asks
 
@@ -74,9 +77,11 @@ Restart Claude Code, or run `/reload-plugins`. The skills are namespaced identic
 **Scripted, no prompts** — if you have the CLI but want it non-interactive:
 
 ```bash
-claude plugin marketplace add DahanItamar/flowsystem
-claude plugin install flowsystem@flowsystem
+claude plugin marketplace add DahanItamar/ai-skills
+claude plugin install flowsystem@dahanitamar
 ```
+
+**Any other agent** — the plugin format above is Claude Code's; Codex, Cursor and the rest do not read it. Each skill is a `SKILL.md`: plain Markdown with no code and nothing to run, so paste the body of [`spec-architect`](plugins/flowsystem/skills/spec-architect/SKILL.md) or [`spec-drift`](plugins/flowsystem/skills/spec-drift/SKILL.md) into `AGENTS.md`, a Cursor rule, or a system prompt. What you lose is automatic invocation — Claude Code loads a skill when it becomes relevant, other tools need you to point at it.
 
 <br>
 
